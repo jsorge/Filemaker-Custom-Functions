@@ -1,0 +1,19 @@
+/*
+=====================================================
+GetWindowKeyValue ( key )
+
+RETURNS:   a value from a window key-value pair
+DEPS:       none
+NOTES:     Use this function to get the value of a key used in the window title
+=====================================================
+*/
+
+Let ( [
+
+	_windowVars = Substitute ( Get ( WindowName ) ; " | " ; "¶" )
+
+] ; 
+
+GetKeyedListValue ( _windowVars ; key )
+
+)

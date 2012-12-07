@@ -1,0 +1,30 @@
+/*
+=====================================================
+SetWindowKeyValue ( key ; value )
+
+RETURNS:   none
+DEPS:       none
+NOTES:     Use this to set variables to a given window from within a script (examples include KeepWindow, ShipToState, etc)
+=====================================================
+*/
+
+Let ( [
+
+	_windowName = Get ( WindowName );
+	_paramValue = GetWindowKeyValue ( key );
+	_currentKeyValueString = key & "=" & _paramValue
+
+] ; 
+
+Case (
+	IsEmpty ( _paramValue ) ;
+		_windowName & " | " & key & "=" & value ; 
+	_paramValue = key;
+		_windowName;
+	value = null;
+		Substitute ( _windowName ; " | " & _currentKeyValueString ; "" );
+	Substitute ( _windowName; _currentKeyValueString ; key & "=" & value )
+
+) //end case
+
+) //end let

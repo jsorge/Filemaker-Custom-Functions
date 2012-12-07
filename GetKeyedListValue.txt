@@ -1,0 +1,24 @@
+/*
+=====================================================
+GetKeyedListValue (text ; key)
+
+RETURNS:   a value from a key - value based list
+DEPS:       none
+NOTES:     Is used to get a value from a return separated list of values that are set up in name value pairs as an example "key=value" 
+=====================================================
+*/
+
+Let (
+[
+	_Key = key;
+	_Text = text & ¶;
+	_KeyLength = Length (_Key & "=");
+	_StartPosition = Position ( _Text ; _Key ; 1 ; 1 );
+	_EndPosition = Position ( _Text ; "¶" ; _StartPosition ; 1 )
+] ;
+Case (
+PatternCount (_Text ; _Key & "=" ) ; Trim (
+							Middle ( _Text ; _StartPosition + _KeyLength ; (_EndPosition - _StartPosition ) - _KeyLength)
+							)
+		) //end case
+) //end let
