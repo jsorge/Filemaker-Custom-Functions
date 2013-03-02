@@ -1,0 +1,42 @@
+/**
+ =====================================
+FUNCITON:
+InitNavDictionary
+
+PURPOSE:
+Creates a dictionary that will persist through the active window's navigation stack. The purpose is to be able to transport data around different modules without having to create extra table occurrences on the graph
+
+RETURNS:
+$$WIN.[WindowSessionID].dict global variable
+
+PARAMETERS:
+dictionary = (string) A data dictionary formatted as a string that can be evaluated to assign its keys to variable values
+
+DEPENDENCIES:
+GetWindowSessionID
+
+
+NOTE:
+
+
+HISTORY:
+Created 2/18/2013 by Jared Sorge
+
+
+REFERENCES:
+
+=====================================
+ */
+
+Let ( [
+
+	_windowSession = GetWindowSessionID;
+	_dictName = "$$WIN." & _windowSession & ".dict";
+
+	_variable = "Let ( " & _dictName & "= " & Quote ( dictionary ) & "; \"\" )"
+
+] ; 
+
+	Evaluate ( _variable )
+
+)

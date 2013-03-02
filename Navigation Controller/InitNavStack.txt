@@ -1,0 +1,43 @@
+/**
+ =====================================
+FUNCITON:
+InitNavStack
+
+PURPOSE:
+Creates the global variable that will track our layout & ID history
+
+RETURNS:
+$$WIN.{WindowSessionID}stack variable set to the sequence of the stack, the next layout and the ID of the record we go to on the next layout
+It's formatted like this: $$WIN.214201330527PM.stack = 1~Orders~D5077114-92DD-422F-9976-BF426ECAF6F0
+
+PARAMETERS:
+none
+
+DEPENDENCIES:
+none
+
+NOTE:
+
+HISTORY:
+Created 2/14/2013 by Jared Sorge
+
+REFERENCES:
+
+=====================================
+ */
+
+Let ( [
+
+	_time = Filter (Get (CurrentTimeStamp) ; "0123456789AMPM");
+	$title = $title & " | windowSession=" & _time;
+
+	_windowID = _time; 
+	_varName = "$$WIN." & _windowID & ".stack";
+	_originalLayout = Get ( LayoutName );
+	_variable = Evaluate ( "Let ( " & _varName & "= " & Quote (  "1~" & _originalLayout )  & " ; \"\" )"  )
+
+] ; 
+
+	_variable
+
+)

@@ -1,0 +1,11 @@
+//Use this function to get the value of a key used in the window title
+
+Let ( [
+
+	_windowVars = Substitute ( Get ( WindowName ) ; " | " ; "¶" )
+
+] ; 
+
+	GetKeyedListValue ( _windowVars ; key )
+
+)
